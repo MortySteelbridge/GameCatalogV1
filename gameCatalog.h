@@ -16,5 +16,4 @@ void Menu();
 
 void load_File();
 
-string Remove_Spaces(string);
 #endif

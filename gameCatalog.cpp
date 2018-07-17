@@ -67,22 +67,3 @@ void load_File()
 {
 
 }
-
-string Remove_Spaces(string oldStr)
-{
-	string newStr;
-	for (int count = 0; count < oldStr.length(); count++)
-	{
-		if (oldStr[count] == 32)
-		{
-			cout << "I found the space" << endl;
-		}
-		else
-		{
-			cout << "I did not find the space" << endl;
-		}
-	}
-	system("pause");
-	newStr = oldStr;
-	return newStr;
-}
