@@ -46,20 +46,47 @@ public:
 	{
 		singleList *newNode; // Used to point to a new node.
 		singleList *nodePtr; // Used to traverse through the list.
-		
+		singleList *previousNode; // Used to track the previous node.
+    
 		// Create's a new node and loads it up.
 		newNode = new singleList;
 		newNode->gameCode = num;  
 		newNode->gameName = newName;
-		
+		cout << "node created and values added." << endl;
 		// Position nodePtr at the head of the list.
 		nodePtr = head;
-		
+		cout << "nodePtr set to Head" << endl;
+		// Set Previousnode to null
+		previousNode = nullptr;
+		cout << "Previousnode set to null" << endl;
 		// Find the game you'd like to insert the new node after.
-		while (nodePtr->gameCode != search)
+		while (nodePtr != nullptr && nodePtr->gameCode != search)
 		{
+			cout << "I have entered the while loop" << endl;
+			if (nodePtr->gameCode == search)
+			{
+				cout << "I have found the matching Gamecode." << endl;
+			}
+			else
+			{
+				cout << "I have not found the matching gameCode" << endl;
+			}
+			previousNode = nodePtr;
 			// Move to the next node.
 			nodePtr = nodePtr->next;		
+		}
+
+		// If the new node is to be the 1st in the list,
+		// insert it before all other nodes.
+		if (previousNode == nullptr)
+		{
+			head = newNode;
+			newNode->next = nodePtr;
+		}
+		else // Otherwise insert after the previous node.
+		{
+			previousNode->next = newNode;
+			newNode->next = nodePtr;
 		}
 		
 	}
@@ -105,11 +132,3 @@ private:
 	singleList *head;
 };
 
-struct singleList
-{
-	string gameName;
-	int gameCode;
-
-	singleList *next;
-
-};

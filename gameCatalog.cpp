@@ -58,7 +58,9 @@ void Menu()
 			cout << "Please enter the game ID where you would like to insert the new game." << endl;
 			cin >> searchNum;
 			
+			cout << "Running insertNode" << endl;
 			list.insertNode(newCode, newName, searchNum);
+			cout << "insertNode has been run." << endl;
 		}
 	}
 }
