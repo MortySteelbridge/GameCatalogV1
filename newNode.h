@@ -52,25 +52,13 @@ public:
 		newNode = new singleList;
 		newNode->gameCode = num;  
 		newNode->gameName = newName;
-		cout << "node created and values added." << endl;
 		// Position nodePtr at the head of the list.
 		nodePtr = head;
-		cout << "nodePtr set to Head" << endl;
 		// Set Previousnode to null
 		previousNode = nullptr;
-		cout << "Previousnode set to null" << endl;
 		// Find the game you'd like to insert the new node after.
 		while (nodePtr != nullptr && nodePtr->gameCode != search)
 		{
-			cout << "I have entered the while loop" << endl;
-			if (nodePtr->gameCode == search)
-			{
-				cout << "I have found the matching Gamecode." << endl;
-			}
-			else
-			{
-				cout << "I have not found the matching gameCode" << endl;
-			}
 			previousNode = nodePtr;
 			// Move to the next node.
 			nodePtr = nodePtr->next;		
@@ -90,10 +78,45 @@ public:
 		}
 		
 	}
-	void deleteNode(double)
+	void deleteNode(double num)
 	{
-
-	}
+		singleList *newNode; // Used to point to a new node.
+		singleList *nodePtr; // Used to traverse through the list.
+		singleList *previousNode; // Used to track the previous node.
+    
+    if(!head)
+    {
+      //if the list is empty, do nothing.
+        return;
+    }
+    
+    // Check the first node to see if it's the target.
+    if (head->gameCode == num)
+    {
+      nodePtr = head->next;
+      delete head;
+      head =nodePtr;
+    } else
+    {
+      // Set node to the head of the list.
+      nodePtr = head;
+      // Skip all nodes whose value member is not num
+      while (nodePtr != nullptr && nodePtr->gameCode != num)
+      {
+        previousNode = nodePtr;
+        nodePtr = nodePtr->next;
+      }
+      // if nodePtr is not at the end of the list
+      // link the previous node to the node after
+      // nodePtr, then delete node Ptr.
+      if (nodePtr)
+      {
+        previousNode ->next = nodePtr->next;
+        delete nodePtr;
+      }
+    }
+  }
+    
 	void displayList() const
 	{
 		singleList *nodePtr; // To move through the list
@@ -103,7 +126,7 @@ public:
 		
 		// While nodePtr points to a node, traverse
 		// the list.
-		system("CLS");
+
 		while (nodePtr)
 		{
 			// Display the values in this node.
@@ -122,7 +145,7 @@ private:
 	struct singleList
 	{
 	// The Data for the list--in this case it's game data.
-		int gameCode;
+		double gameCode;
 		string gameName;
 	// Pointer to the next node in the list.
 		singleList *next;

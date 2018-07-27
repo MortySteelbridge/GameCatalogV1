@@ -18,12 +18,12 @@ void Menu()
 
 	cout << "Welcome to The Catalog." << endl;
 
-	while (target != 5)
+	while (target != 6)
 	{	
 		
 		cout  << "Please select from the following." << endl;
 		cout << "1. Check Catalog." << endl <<  "2. Add to Catalog." << endl << "3. Insert game in Catalog" << endl << "4. Lend game." << endl
-			<< "5. Exit Program" << endl;
+			<< "5. Delete Game from Catalog" << endl << "6. Exit Program" << endl;
 		cin >> target;
 		if (target == 1)
 		{
@@ -62,6 +62,20 @@ void Menu()
 			list.insertNode(newCode, newName, searchNum);
 			cout << "insertNode has been run." << endl;
 		}
+    else if (target ==4)
+    {
+      cout << "You have selected option 4." << endl; // remove later.
+    }
+    else if (target == 5)
+    {
+       double toBeDeleted;
+      cout << "You have the following games in the catalog:" << endl;
+      list.displayList();
+      cout << "Which game would you like to remove from the catalog?" << endl
+             << "NOTE: Please enter the Game Code of the game, not the name of the game." << endl;
+      cin >> toBeDeleted;
+      list.deleteNode(toBeDeleted);
+    }
 	}
 }
 
