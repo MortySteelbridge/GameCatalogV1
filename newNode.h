@@ -208,13 +208,13 @@ void load_File()
     data.push_back(line);
     newNode->next = nullptr;
   } 
-    for (int i=0; i< (data.size() - 1); i++)
+    for (int i=0; i< data.size(); i++)
   {
     // If the Vector is even it will contain a Name, so place the name in the Linked List.
     if ( (i % 2  == 0))
     {
       tempString = data[i];
-      nodePtr->gameName = boost::lexical_cast<double>(tempString);
+      nodePtr->gameName = tempString;
     } else
     // If the Vector is odd it will contain the Number, so place the code in the Linked List.  FIX
     {
