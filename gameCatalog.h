@@ -5,15 +5,23 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <boost/lexical_cast.hpp>
 
 using std::string;
+using std::to_string;
 using std::cout;
 using std::cin;
 using std::endl;
-
+using std::getline;
+using std::vector;
+using std::stringstream;
+using boost::lexical_cast;
 
 void Menu();
 
-void load_File();
+double StrToDouble(double);
 
 #endif

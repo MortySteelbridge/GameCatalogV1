@@ -15,7 +15,7 @@ void Menu()
 	double target = 0, newCode = 0, searchNum = 0;
 	string newName;
 	gameList list;
-
+  list.load_File();
 	cout << "Welcome to The Catalog." << endl;
 
 	while (target != 6)
@@ -77,9 +77,13 @@ void Menu()
       list.deleteNode(toBeDeleted);
     }
 	}
+  list.write_File();
 }
 
-void load_File()
-{
-
+double StrToDouble(string s) {
+     double d;
+     std::stringstream ss(s); //turn the string into a stream
+     ss >> d; //convert
+     return d;
 }
+

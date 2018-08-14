@@ -139,6 +139,94 @@ public:
 		}
 		nodePtr = head;
 	}
+  
+  void write_File()
+  {
+    std::ofstream myFile;
+    singleList *nodePtr; 
+		
+		// Position nodePtr at the head of the list.
+		nodePtr = head;
+		
+    // Opens the file for writing.
+    myFile.open("Game_List.txt");
+		// While nodePtr points to a node, traverse
+		// the list.
+
+		while (nodePtr)
+		{
+			// Display the values in this node.
+			
+			myFile << nodePtr->gameCode << std::endl;
+			myFile << nodePtr->gameName << std::endl;
+			// Move to the next node.
+			nodePtr = nodePtr->next;
+		}
+		nodePtr = head;
+    myFile.close();
+  }
+  
+void load_File()
+{
+  std::vector <string> data;
+  string line, tempString;
+  stringstream converted;
+  
+  std::ifstream myFile;
+  singleList *newNode;
+  singleList *nodePtr;
+  
+  double newDouble;
+  // Position nodePtr at the head of hte list.
+  nodePtr = head;
+  
+  // if there are no nodes in the list made newNode the first.
+	if (!head)
+	{
+		head = newNode;
+	} else
+	{
+		// Initialize nodePtr to head of list.
+		nodePtr = head;
+			
+		// Find the last node in the list.
+		while (nodePtr->next)
+			nodePtr = nodePtr->next;
+	
+			// Insert newNode as the last node.
+		nodePtr->next = newNode;
+	}
+  
+  // Opens the file for writing.
+  myFile.open("Game_List.txt");
+ 
+ 		// Create's a new node and loads it up.
+	newNode = new singleList;
+  while(std::getline(myFile, line))
+  {
+    //Put something here that  takes the info from the txt file and loads it into the link list.
+    data.push_back(line);
+    newNode->next = nullptr;
+  } 
+    for (int i=0; i< (data.size() - 1); i++)
+  {
+    // If the Vector is even it will contain a Name, so place the name in the Linked List.
+    if ( (i % 2  == 0))
+    {
+      tempString = data[i];
+      nodePtr->gameName = boost::lexical_cast<double>(tempString);
+    } else
+    // If the Vector is odd it will contain the Number, so place the code in the Linked List.  FIX
+    {
+     /* 
+      tempString = data[i];
+      newDouble = boost::lexical_cast<double>(tempString);
+      nodePtr->gameCode = newDouble;
+    */
+    }  
+    cout << data[i] << endl;
+  }  
+}
 
 private:
 	// Declares a structure for the list.
